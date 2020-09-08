@@ -11,7 +11,7 @@ namespace RapidRecipeRecall.Models
     public class RecipeCreate
     {
         [Required]
-        public Guid EnteredBy { get; set; }
+        public string EnteredBy { get; set; }
 
         [Required]
         [MinLength(2, ErrorMessage = "Please enter at least 2 charactoers.")]
@@ -32,7 +32,7 @@ namespace RapidRecipeRecall.Models
 
     public class RecipeDetail
     {
-        public Guid EnteredBy { get; set; }
+        public string EnteredBy { get; set; }
         public int RecipeId { get; set; }
         public string RecipeName { get; set; }
         public string RecipeAuthor { get; set; }
@@ -44,9 +44,22 @@ namespace RapidRecipeRecall.Models
 
     public class RecipeEdit
     {
+        public string EnteredBy { get; set; } // Would it be this since users can only edit recipice they enter into the table??
+        public string RecipeName { get; set; }
+        public string RecipeAuthor { get; set; }
+        public string Ingredients { get; set; }
+        public string Instructions { get; set; }
+        public Category Category { get; set; }
     }
 
-    public class RecipeListItem
+    public class RecipeListItem 
     {
+        public int RecipeId { get; set; }
+        public string RecipeName { get; set; }
+        public string RecipeAuthor { get; set; }
+        public string Ingredients { get; set; }
+        public string Instructions { get; set; }
+        public Category Category { get; set; }
+
     }
 }
