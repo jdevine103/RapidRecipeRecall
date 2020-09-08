@@ -16,7 +16,7 @@ namespace RapidRecipeRecall.Models
         [Required]
         [MinLength(2, ErrorMessage = "Please enter at least 2 charactoers.")]
         public string RecipeName { get; set; }
-        
+
         public string RecipeAuthor { get; set; }
         [Required]
         public bool IsPublic { get; set; }
@@ -32,11 +32,17 @@ namespace RapidRecipeRecall.Models
 
     public class RecipeDetail
     {
-       
+        public Guid EnteredBy { get; set; }
+        public int RecipeId { get; set; }
+        public string RecipeName { get; set; }
+        public string RecipeAuthor { get; set; }
+        public string Ingredients { get; set; }
+        public string Instructions { get; set; }
+        public Category Category { get; set; }
 
     }
 
-    public class RecipeEdit 
+    public class RecipeEdit
     {
     }
 
