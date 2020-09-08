@@ -1,54 +1,46 @@
-﻿using System;
+﻿using RapidRecipeRecall.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RapidRecipeRecall.Data
+namespace RapidRecipeRecall.Models
 {
-    public class Recipe
+    public class RecipeCreate
     {
-        [Key]
-        public int RecipeId { get; set; }
-
-        [ForeignKey(nameof(User))]
+        [Required]
         public Guid EnteredBy { get; set; }
-        public virtual ApplicationUser User { get; set; }
 
         [Required]
+        [MinLength(2, ErrorMessage = "Please enter at least 2 charactoers.")]
         public string RecipeName { get; set; }
-
-        [Required]
+        
         public string RecipeAuthor { get; set; }
-
         [Required]
         public bool IsPublic { get; set; }
-
+        [Required]
         public bool AddToMyList { get; set; }
-
         [Required]
         public string Ingredients { get; set; }
-
         [Required]
         public string Instructions { get; set; }
-
         [Required]
         public Category Category { get; set; }
-
     }
 
-    public enum Category
+    public class RecipeDetail
     {
-        Appetizers, 
-        Soups,
-        Salads,
-        Vegetables,
-        Main_Dishes,
-        Breads, 
-        Desserts,
-        Miscellaneous
+       
+
     }
 
+    public class RecipeEdit 
+    {
+    }
+
+    public class RecipeListItem
+    {
+    }
 }
