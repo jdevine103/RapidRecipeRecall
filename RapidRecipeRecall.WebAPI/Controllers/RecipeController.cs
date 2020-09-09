@@ -19,7 +19,7 @@ namespace RapidRecipeRecall.WebAPI.Controllers
             return recipeService;
         }
 
-    public IHttpActionResult Get([FromBody]string name)
+    public IHttpActionResult Get([FromUri]string name)
     {
         RecipeService recipeService = CreateRecipeService();
         var recipe = recipeService.GetRecipeByName(name);
