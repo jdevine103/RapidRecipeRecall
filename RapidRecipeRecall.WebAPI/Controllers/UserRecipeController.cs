@@ -12,25 +12,25 @@ namespace RapidRecipeRecall.WebAPI.Controllers
 {
     public class UserRecipeController : ApiController
     {
-        //private UserRecipeService CreateUserRecipeService()
-        //{
-        //    var userId = Guid.Parse(User.Identity.GetUserId());
-        //    var userRecipeService = new UserRecipeService(userId);
-        //    return userRecipeService;
-        //}
+        private UserRecipeService CreateUserRecipeService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var userRecipeService = new UserRecipeService(userId);
+            return userRecipeService;
+        }
 
-        //public IHttpActionResult Post(UserRecipeCreate recipe)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return BadRequest(ModelState);
+        public IHttpActionResult Post(UserRecipeCreate recipe)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-        //    var service = CreateUserRecipeService();
+            var service = CreateUserRecipeService();
 
-        //    if (!service.CreateUserRecipe(recipe))
-        //        return InternalServerError();
+            if (!service.CreateUserRecipe(recipe))
+                return InternalServerError();
 
-        //    return Ok();
-        //}
+            return Ok();
+        }
 
 
         //public IHttpActionResult Get()

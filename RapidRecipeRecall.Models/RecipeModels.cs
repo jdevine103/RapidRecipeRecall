@@ -10,7 +10,6 @@ namespace RapidRecipeRecall.Models
 {
     public class RecipeCreate
     {
-        
         public string EnteredBy { get; set; }
 
         [Required]

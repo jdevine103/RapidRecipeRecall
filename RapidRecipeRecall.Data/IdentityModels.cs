@@ -16,7 +16,34 @@ namespace RapidRecipeRecall.Data
     {
         // Our added properties
         public List<UserRecipe> MyRecipes { get; set; }
+         //   get
+         //   {
+         //       List<UserRecipe> myRecipes;
+
+         //       using (var ctx = new ApplicationDbContext())
+         //       {
+         //           var query =
+         //               ctx
+         //                   .UserRecipes
+         //                   .Where(e => e.UserId == Id)
+         //                   .Select(
+         //                       e =>
+         //                           new RecipeListItem
+         //                           {
+         //                               RecipeId = e.RecipeId,
+         //                               RecipeName = e.RecipeName,
+         //                               RecipeAuthor = e.RecipeAuthor,
+         //                               Ingredients = e.Ingredients,
+         //                               Instructions = e.Instructions,
+         //                               Category = e.Category,
+         //                           }
+         //                   );
+
+         //           return query.ToList();
+         //       }
+         //}
         public List<UserRecipe> MyFavorites { get; set; }
+        //use AddToMyFavorites boolean here 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

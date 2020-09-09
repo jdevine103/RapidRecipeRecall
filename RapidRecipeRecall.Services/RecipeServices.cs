@@ -27,17 +27,25 @@ namespace RapidRecipeRecall.Services
                     RecipeName = model.RecipeName,
                     RecipeAuthor = model.RecipeAuthor,
                     IsPublic = model.IsPublic,
-                    AddToMyList = model.AddToMyList,
                     Ingredients = model.Ingredients,
                     Instructions = model.Instructions,
                     Category = model.Category,
                     UserId = _userId.ToString()
                 };
+            
+            var userRecipe =
+            new UserRecipe
+            {
+                RecipeId = entity.RecipeId,
+                UserId = entity.UserId
+            };
+
 
             using (var ctx = new ApplicationDbContext())
             {
+                ctx.UserRecipes.Add(userRecipe);
                 ctx.Recipes.Add(entity);
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() == 2;
             }
         }
 

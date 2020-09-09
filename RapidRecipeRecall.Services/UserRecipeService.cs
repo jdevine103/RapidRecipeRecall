@@ -10,32 +10,32 @@ namespace RapidRecipeRecall.Services
 {
     public class UserRecipeService
     {
-        //private readonly Guid _userId;
+        private readonly Guid _userId;
 
-        //public UserRecipeService(Guid userId)
-        //{
-        //    _userId = userId;
-        //}
+        public UserRecipeService(Guid userId)
+        {
+            _userId = userId;
+        }
 
 
-        //public bool CreateUserRecipe(UserRecipeCreate model)
-        //{
-        //    var entity =
-        //        new UserRecipe()
-        //        {
-        //            Id = model.Id,
-        //            RecipeId = model.RecipeId,
-        //            UserId = model.UserId,
-        //            Notes = model.Notes,
+        public bool CreateUserRecipe(UserRecipeCreate model)
+        {
+            var entity =
+                new UserRecipe()
+                {
+                    RecipeId = model.RecipeId,
+                    UserId = _userId.ToString(),
+                    AddToFavorites = model.AddToFavorites,
+                    Notes = model.Notes,
 
-        //        };
+                };
 
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        ctx.UserRecipes.Add(entity);
-        //        return ctx.SaveChanges() == 1;
-        //    }
-        //}
+                using (var ctx = new ApplicationDbContext())
+                {
+                    ctx.UserRecipes.Add(entity);
+                    return ctx.SaveChanges() == 1;
+                }
+        }
 
 
         //public IEnumerable<UserRecipeListItem> GetAllUserRecipes()
@@ -76,7 +76,7 @@ namespace RapidRecipeRecall.Services
         //                RecipeId = entity.RecipeId,
         //                UserId = entity.UserId,
         //                Notes = entity.Notes,
-                        
+
         //            };
         //    }
         //}

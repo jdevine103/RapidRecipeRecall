@@ -86,6 +86,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\202009091932597_InitialCreate.cs" />
+    <Compile Include="Migrations\202009091932597_InitialCreate.Designer.cs">
+      <DependentUpon>202009091932597_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009092043178_FavoritesBool.cs" />
+    <Compile Include="Migrations\202009092043178_FavoritesBool.Designer.cs">
+      <DependentUpon>202009092043178_FavoritesBool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Note.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recipe.cs" />
@@ -94,6 +103,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202009091932597_InitialCreate.resx">
+      <DependentUpon>202009091932597_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009092043178_FavoritesBool.resx">
+      <DependentUpon>202009092043178_FavoritesBool.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
