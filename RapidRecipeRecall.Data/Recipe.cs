@@ -14,8 +14,16 @@ namespace RapidRecipeRecall.Data
         public int RecipeId { get; set; }
 
         [ForeignKey(nameof(User))]
-        public string EnteredBy { get; set; }
+        public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
+
+        public string EnteredBy
+        {
+            get
+            {
+                return User.UserName;
+            }
+        }
 
         [Required]
         public string RecipeName { get; set; }
