@@ -35,6 +35,21 @@ namespace RapidRecipeRecall.Services
                     ctx.UserRecipes.Add(entity);
                     return ctx.SaveChanges() == 1;
                 }
+        }        
+        public bool CreateUserRecipeAuto(Recipe entity)
+        {
+            var userRecipe =
+            new UserRecipe
+            {
+                RecipeId = entity.RecipeId,
+                UserId = entity.UserId
+            };
+
+            using (var ctx = new ApplicationDbContext())
+                {
+                    ctx.UserRecipes.Add(userRecipe);
+                    return ctx.SaveChanges() == 1;
+                }
         }
 
 

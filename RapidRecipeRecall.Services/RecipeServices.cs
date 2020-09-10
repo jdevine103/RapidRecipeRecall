@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RapidRecipeRecall.Services;
 
 namespace RapidRecipeRecall.Services
 {
@@ -17,9 +18,16 @@ namespace RapidRecipeRecall.Services
             _userId = userId;
         }
 
-
+        private UserRecipeService CreateUserRecipeService()
+        {
+            //var userId = Guid.Parse(User.Identity.GetUserId());
+            var userRecipeService = new UserRecipeService(_userId);
+            return userRecipeService;
+        }
         public bool CreateRecipe(RecipeCreate model)
         {
+            bool saved;
+            
             var entity =
                 new Recipe()
                 {
@@ -32,21 +40,17 @@ namespace RapidRecipeRecall.Services
                     Category = model.Category,
                     UserId = _userId.ToString()
                 };
-            
-            var userRecipe =
-            new UserRecipe
-            {
-                RecipeId = entity.RecipeId,
-                UserId = entity.UserId
-            };
-
 
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.UserRecipes.Add(userRecipe);
                 ctx.Recipes.Add(entity);
-                return ctx.SaveChanges() == 2;
+                saved = ctx.SaveChanges() == 1;
             }
+
+            var service = CreateUserRecipeService();
+            service.CreateUserRecipeAuto(entity);
+
+            return saved;
         }
 
         public IEnumerable<RecipeListItem> GetAllRecipes()
