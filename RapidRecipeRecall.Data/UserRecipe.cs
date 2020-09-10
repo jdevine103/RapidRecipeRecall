@@ -24,5 +24,20 @@ namespace RapidRecipeRecall.Data
         public bool AddToFavorites { get; set; }
 
         public List<Note> Notes { get; set; }
+        //{
+        //    get
+        //    {
+        //        using (var ctx = new ApplicationDbContext())
+        //        {
+        //            var query =
+        //               ctx
+        //                    .Notes
+        //                    .Where(e => e.UserRecipe.UserId == User.Id && e.UserRecipeId == Id)
+        //                    .ToList();
+        //            return query;
+        //        }
+        //    }
+        //}
+
     }
 }

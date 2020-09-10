@@ -2,6 +2,7 @@
 using RapidRecipeRecall.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace RapidRecipeRecall.Services
                     RecipeId = model.RecipeId,
                     UserId = _userId.ToString(),
                     AddToFavorites = model.AddToFavorites,
-                    Notes = model.Notes,
+                    //Notes = model.Notes,
 
                 };
 
@@ -117,23 +118,33 @@ namespace RapidRecipeRecall.Services
                 return userRecipe.ToArray();
             }
         }
-        //public bool UpdateUserRecipe(UserRecipeEdit model, int id)
-        //{
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        var entity =
-        //            ctx
-        //                .UserRecipes
-        //                .Single(e => e.RecipeId == id);
+        public bool UpdateUserRecipeAddNote(UserRecipeAddNote model, int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .UserRecipes
+                        .Single(e => e.Id == id && e.User.Id == _userId.ToString());
 
-        //        entity.Id = model.Id;
-        //        entity.RecipeId = model.RecipeId;
-        //        entity.UserId = model.UserId;
-        //        entity.Notes = model.Notes;
+                var noteService = CreateNoteService();
+                noteService.CreateNote(model);
 
-        //        return ctx.SaveChanges() == 1;
-        //    }
-        //}
+                //Note note =
+                //    new Note()
+                //    {
+                //        Text = model.Text
+                //    };
+
+     
+                return ctx.SaveChanges() == 1;
+
+                //entity.Notes.Add(note);
+
+                //return worked;
+
+            }
+        }
 
         //public bool DeleteUserRecipe(int recipeId)
         //{
@@ -149,6 +160,11 @@ namespace RapidRecipeRecall.Services
         //        return ctx.SaveChanges() == 1;
         //    }
         //}
-
+        private NoteService CreateNoteService()
+        {
+            //var userId = Guid.Parse(User.Identity.GetUserId());
+            NoteService noteService = new NoteService(_userId);
+            return noteService;
+        }
     }
 }

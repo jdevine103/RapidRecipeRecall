@@ -19,18 +19,18 @@ namespace RapidRecipeRecall.WebAPI.Controllers
             return noteService;
         }
 
-        public IHttpActionResult Post(NoteCreate note)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+        //public IHttpActionResult Post(NoteCreate note)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return BadRequest(ModelState);
 
-            var service = CreateNoteService();
+        //    var service = CreateNoteService();
 
-            if (!service.CreateNote(note))
-                return InternalServerError();
+        //    if (!service.CreateNote(note))
+        //        return InternalServerError();
 
-            return Ok();
-        }
+        //    return Ok();
+        //}
 
         //public IHttpActionResult Get()
         //{

@@ -69,17 +69,17 @@ namespace RapidRecipeRecall.WebAPI.Controllers
         //    return BadRequest("AddToFavorites is FALSE");
         //}
 
-        //public IHttpActionResult Put([FromUri] int id, [FromBody] UserRecipeEdit updatedRecipe)
+        public IHttpActionResult Put([FromUri] int id, [FromBody] UserRecipeAddNote updatedUserRecipeWithAddedNote)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-        //{
-        //    if (!ModelState.IsValid)
-        //        return BadRequest(ModelState);
-        //    var service = CreateUserRecipeService();
+            var service = CreateUserRecipeService();
 
-        //    if (!service.UpdateUserRecipe(updatedRecipe, id))
-        //        return InternalServerError();
-        //    return Ok();
-        //}
+            if (!service.UpdateUserRecipeAddNote(updatedUserRecipeWithAddedNote, id))
+                return InternalServerError();
+            return Ok();
+        }
 
         //public IHttpActionResult Delete(int id)
         //{

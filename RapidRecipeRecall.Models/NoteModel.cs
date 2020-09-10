@@ -9,7 +9,6 @@ namespace RapidRecipeRecall.Models
 {
     public class NoteCreate
     {
-        [Required]
         public int NoteId { get; set; }
 
         [Required]

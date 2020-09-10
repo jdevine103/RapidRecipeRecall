@@ -17,15 +17,14 @@ namespace RapidRecipeRecall.Services
             _userId = userId;
         }
 
-        public bool CreateNote(NoteCreate model)
+        public bool CreateNote(UserRecipeAddNote model)
         {
             var entity =
                 new Note()
                 {
-                    NoteId = model.NoteId,
+                    //NoteId = model.NoteId,
                     Text = model.Text,
-                    UserRecipeId = model.UserRecipeId,
-                   
+                    //UserRecipeId = model.UserRecipeId,
                 };
 
             using (var ctx = new ApplicationDbContext())
