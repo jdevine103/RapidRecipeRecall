@@ -20,7 +20,6 @@ namespace RapidRecipeRecall.Data
         {
             get
             {
-                // List<UserRecipe> myRecipes;
 
                 using (var ctx = new ApplicationDbContext())
                 {
@@ -36,7 +35,23 @@ namespace RapidRecipeRecall.Data
 
 
 
-public List<UserRecipe> MyFavorites { get; set; }
+        public List<UserRecipe> MyFavorites
+        {
+            get
+            {
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var query =
+                       ctx
+                            .UserRecipes
+                            .Where(e => e.UserId == Id && e.AddToFavorites)
+                            .ToList();
+                    return query;
+                }
+            }
+        }
+
+
         //use AddToMyFavorites boolean here 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {

@@ -333,7 +333,7 @@ namespace RapidRecipeRecall.WebAPI.Controllers
                 UserName = model.UserName, 
                 Email = model.Email, 
                // MyRecipes = new List<UserRecipe>(),
-                MyFavorites = new List<UserRecipe>()
+                //MyFavorites = new List<UserRecipe>()
             };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
