@@ -34,8 +34,6 @@ namespace RapidRecipeRecall.Data
         [Required]
         public bool IsPublic { get; set; }
 
-        public bool AddToMyList { get; set; }
-
         [Required]
         public string Ingredients { get; set; }
 
