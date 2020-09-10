@@ -40,12 +40,12 @@ namespace RapidRecipeRecall.WebAPI.Controllers
         //    return Ok(post);
         //}
 
-        //public IHttpActionResult Get(int id)
-        //{
-        //    UserRecipeService postService = CreateUserRecipeService();
-        //    var post = postService.GetUserRecipeById(id);
-        //    return Ok(post);
-        //}
+        public IHttpActionResult Get(string id)
+        {
+            UserRecipeService postService = CreateUserRecipeService();
+            var post = postService.GetMyRecipesByUserId(id);
+            return Ok(post);
+        }
 
         //public IHttpActionResult Put([FromUri] int id, [FromBody] UserRecipeEdit updatedRecipe)
 

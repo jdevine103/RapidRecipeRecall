@@ -25,7 +25,7 @@ namespace RapidRecipeRecall.Models
 
         public string UserId { get; set; }
 
-        public List<Note> Notes { get; set; }
+        public List<NoteDetail> Notes { get; set; }
     }
 
     public class UserRecipeEdit

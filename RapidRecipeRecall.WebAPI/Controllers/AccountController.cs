@@ -332,7 +332,7 @@ namespace RapidRecipeRecall.WebAPI.Controllers
             var user = new ApplicationUser() { 
                 UserName = model.UserName, 
                 Email = model.Email, 
-                MyRecipes = new List<UserRecipe>(),
+               // MyRecipes = new List<UserRecipe>(),
                 MyFavorites = new List<UserRecipe>()
             };
 

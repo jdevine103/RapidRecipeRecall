@@ -30,12 +30,12 @@ namespace RapidRecipeRecall.Services
 
                 };
 
-                using (var ctx = new ApplicationDbContext())
-                {
-                    ctx.UserRecipes.Add(entity);
-                    return ctx.SaveChanges() == 1;
-                }
-        }        
+            using (var ctx = new ApplicationDbContext())
+            {
+                ctx.UserRecipes.Add(entity);
+                return ctx.SaveChanges() == 1;
+            }
+        }
         public bool CreateUserRecipeAuto(Recipe entity)
         {
             var userRecipe =
@@ -46,14 +46,14 @@ namespace RapidRecipeRecall.Services
             };
 
             using (var ctx = new ApplicationDbContext())
-                {
-                    ctx.UserRecipes.Add(userRecipe);
-                    return ctx.SaveChanges() == 1;
-                }
+            {
+                ctx.UserRecipes.Add(userRecipe);
+                return ctx.SaveChanges() == 1;
+            }
         }
 
 
-        //public IEnumerable<UserRecipeListItem> GetAllUserRecipes()
+        //public IEnumerable<UserRecipeListItem> GetMyRecipesByUserId()
         //{
         //    using (var ctx = new ApplicationDbContext())
         //    {
@@ -76,25 +76,26 @@ namespace RapidRecipeRecall.Services
         //    }
         //}
 
-        //public UserRecipeDetail GetUserRecipeById(int id)
-        //{
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        var entity =
-        //            ctx
-        //                .UserRecipes
-        //                .Single(e => e.UserRecipeId == id);
-        //        return
-        //            new UserRecipeDetail
-        //            {
-        //                Id = entity.Id,
-        //                RecipeId = entity.RecipeId,
-        //                UserId = entity.UserId,
-        //                Notes = entity.Notes,
-
-        //            };
-        //    }
-        //}
+        public IEnumerable<UserRecipeListItem> GetMyRecipesByUserId(string id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Users
+                        .FirstOrDefault(e => e.Id.ToString() == id);
+                var userRecipe = entity.MyRecipes.Select(
+                   e => new UserRecipeListItem
+                   {
+                       Id = e.Id,
+                       RecipeId = e.RecipeId,
+                       Notes = e.Notes,
+                       UserId = e.UserId,
+                   }
+                   );
+                return userRecipe.ToArray();
+            }
+        }
 
         //public bool UpdateUserRecipe(UserRecipeEdit model, int id)
         //{
