@@ -87,6 +87,7 @@ namespace RapidRecipeRecall.Services
                     ctx
                         .Recipes
                         .Single(e => e.RecipeName == name && e.IsPublic == true); 
+                        
                 return
                     new RecipeDetail
                     {
