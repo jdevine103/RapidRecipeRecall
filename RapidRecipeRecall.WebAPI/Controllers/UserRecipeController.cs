@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace RapidRecipeRecall.WebAPI.Controllers
 {
+    [RoutePrefix("api/UserRecipe")]
     public class UserRecipeController : ApiController
     {
         private UserRecipeService CreateUserRecipeService()
@@ -40,12 +41,33 @@ namespace RapidRecipeRecall.WebAPI.Controllers
         //    return Ok(post);
         //}
 
-        public IHttpActionResult Get(string id)
+        [Route("MyRecipes")]
+        public IHttpActionResult Get([FromUri] string id)
         {
             UserRecipeService postService = CreateUserRecipeService();
             var post = postService.GetMyRecipesByUserId(id);
             return Ok(post);
         }
+
+
+        [Route("MyFavorites")]
+        public IHttpActionResult GetMyFavorites([FromUri] string id)
+        {
+            UserRecipeService postService = CreateUserRecipeService();
+                var post = postService.GetMyFavoritesByUserId(id);
+                return Ok(post);
+        }
+
+        //public IHttpActionResult GetFavorites([FromUri] string id, [FromBody] bool addToFavorites)
+        //{
+        //    UserRecipeService postService = CreateUserRecipeService();
+        //    if (addToFavorites == true)
+        //    {
+        //        var post = postService.GetMyFavoritesByUserId(id);
+        //        return Ok(post);
+        //    }
+        //    return BadRequest("AddToFavorites is FALSE");
+        //}
 
         //public IHttpActionResult Put([FromUri] int id, [FromBody] UserRecipeEdit updatedRecipe)
 

@@ -97,6 +97,26 @@ namespace RapidRecipeRecall.Services
             }
         }
 
+        public IEnumerable<UserRecipeListItem> GetMyFavoritesByUserId(string id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Users
+                        .FirstOrDefault(e => e.Id.ToString() == id);
+                var userRecipe = entity.MyFavorites.Select(
+                   e => new UserRecipeListItem
+                   {
+                       Id = e.Id,
+                       RecipeId = e.RecipeId,
+                       Notes = e.Notes,
+                       UserId = e.UserId,
+                   }
+                   );
+                return userRecipe.ToArray();
+            }
+        }
         //public bool UpdateUserRecipe(UserRecipeEdit model, int id)
         //{
         //    using (var ctx = new ApplicationDbContext())
