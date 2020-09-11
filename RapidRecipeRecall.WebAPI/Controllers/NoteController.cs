@@ -46,27 +46,27 @@ namespace RapidRecipeRecall.WebAPI.Controllers
         //    return Ok(note);
         //}
 
-        //public IHttpActionResult Put([FromUri] int id, [FromBody] NoteEdit updatedNote)
+        public IHttpActionResult Put([FromUri] int id, [FromBody] NoteEdit updatedNote)
 
-        //{
-        //    if (!ModelState.IsValid)
-        //        return BadRequest(ModelState);
-        //    var service = CreateNoteService();
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var service = CreateNoteService();
 
-        //    if (!service.UpdateNote(updatedNote, id))
-        //        return InternalServerError();
-        //    return Ok();
-        //}
+            if (!service.UpdateNote(updatedNote, id))
+                return InternalServerError();
+            return Ok();
+        }
 
-        //public IHttpActionResult Delete(int id)
-        //{
-        //    var service = CreateNoteService();
+        public IHttpActionResult Delete(int id)
+        {
+            var service = CreateNoteService();
 
-        //    if (!service.DeleteNote(id))
-        //        return InternalServerError();
+            if (!service.DeleteNote(id))
+                return InternalServerError();
 
-        //    return Ok();
-        //}
+            return Ok();
+        }
 
     }
 }

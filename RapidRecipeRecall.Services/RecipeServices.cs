@@ -27,7 +27,7 @@ namespace RapidRecipeRecall.Services
         public bool CreateRecipe(RecipeCreate model)
         {
             bool saved;
-            
+
             var entity =
                 new Recipe()
                 {
@@ -60,22 +60,19 @@ namespace RapidRecipeRecall.Services
                 var query =
                     ctx
                         .Recipes
-                        .Where(e => e.IsPublic) 
+                        .Where(e => e.IsPublic)
                         .Select(
                             e =>
                                 new RecipeListItem
                                 {
-
                                     RecipeId = e.RecipeId,
                                     RecipeName = e.RecipeName,
                                     RecipeAuthor = e.RecipeAuthor,
                                     Ingredients = e.Ingredients,
                                     Instructions = e.Instructions,
                                     Category = e.Category,
-
                                 }
                         );
-
                 return query.ToArray();
             }
         }
@@ -87,8 +84,8 @@ namespace RapidRecipeRecall.Services
                 var entity =
                     ctx
                         .Recipes
-                        .Single(e => e.RecipeName == name && e.IsPublic == true); 
-                        
+                        .Single(e => e.RecipeName == name && e.IsPublic == true);
+
                 return
                     new RecipeDetail
                     {
@@ -97,7 +94,6 @@ namespace RapidRecipeRecall.Services
                         Ingredients = entity.Ingredients,
                         Instructions = entity.Instructions,
                         Category = entity.Category,
-
                     };
             }
         }
@@ -120,7 +116,6 @@ namespace RapidRecipeRecall.Services
                         Ingredients = entity.Ingredients,
                         Instructions = entity.Instructions,
                         Category = entity.Category,
-
                     };
             }
         }
@@ -132,15 +127,12 @@ namespace RapidRecipeRecall.Services
                 var entity =
                     ctx
                         .Recipes
-                        .Single(e => e.RecipeId == id); 
-                
-
+                        .Single(e => e.RecipeId == id && e.UserId == _userId.ToString());
                 entity.RecipeName = model.RecipeName;
                 entity.RecipeAuthor = model.RecipeAuthor;
-                entity.Ingredients = model.Ingredients; 
-                entity.Instructions = model.Instructions; 
+                entity.Ingredients = model.Ingredients;
+                entity.Instructions = model.Instructions;
                 entity.Category = model.Category;
-
 
                 return ctx.SaveChanges() == 1;
             }
@@ -153,7 +145,7 @@ namespace RapidRecipeRecall.Services
                 var entity =
                     ctx
                         .Recipes
-                        .Single(e => e.RecipeId == recipeId);
+                        .Single(e => e.RecipeId == recipeId && e.UserId == _userId.ToString());
 
                 ctx.Recipes.Remove(entity);
 

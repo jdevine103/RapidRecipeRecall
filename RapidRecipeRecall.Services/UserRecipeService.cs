@@ -18,7 +18,6 @@ namespace RapidRecipeRecall.Services
             _userId = userId;
         }
 
-
         public bool CreateUserRecipe(UserRecipeCreate model)
         {
             var entity =
@@ -59,7 +58,8 @@ namespace RapidRecipeRecall.Services
                 var entity =
                     ctx
                         .UserRecipes
-                        .FirstOrDefault(e => e.Id == id);
+                        //This is the difference between comment and note 
+                        .FirstOrDefault(e => e.Id == id && e.User.Id.ToString() == _userId.ToString());
                 var notes = entity.Notes.Select(
                    e => new NoteListItem
                    {
@@ -113,21 +113,21 @@ namespace RapidRecipeRecall.Services
                 return userRecipe.ToArray();
             }
         }
-        public bool UpdateUserRecipeAddNote(NoteCreate model, int id)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .UserRecipes
-                        .Single(e => e.Id == id && e.User.Id == _userId.ToString());
+        //public bool UpdateUserRecipeAddNote(NoteCreate model, int id)
+        //{
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var entity =
+        //            ctx
+        //                .UserRecipes
+        //                .Single(e => e.Id == id && e.User.Id == _userId.ToString());
 
-                var noteService = CreateNoteService();
-                noteService.CreateNote(model);
+        //        var noteService = CreateNoteService();
+        //        noteService.CreateNote(model);
    
-                return true; 
-            }
-        }
+        //        return true; 
+        //    }
+        //}
 
         //public bool DeleteUserRecipe(int recipeId)
         //{
@@ -143,6 +143,7 @@ namespace RapidRecipeRecall.Services
         //        return ctx.SaveChanges() == 1;
         //    }
         //}
+
         private NoteService CreateNoteService()
         {
             //var userId = Guid.Parse(User.Identity.GetUserId());

@@ -33,8 +33,8 @@ namespace RapidRecipeRecall.WebAPI.Controllers
             return Ok();
         }
 
-
-        //public IHttpActionResult Get()
+        //This would be getting all MyRecipes and MyFavorites at the same time 
+        //public IHttpActionResult GetByUserId()
         //{
         //    UserRecipeService postService = CreateUserRecipeService();
         //    var post = postService.GetAllUserRecipes();
@@ -44,51 +44,38 @@ namespace RapidRecipeRecall.WebAPI.Controllers
         [Route("MyRecipes")]
         public IHttpActionResult Get([FromUri] string id)
         {
-            UserRecipeService postService = CreateUserRecipeService();
-            var post = postService.GetMyRecipesByUserId(id);
-            return Ok(post);
+            UserRecipeService userRecipeService = CreateUserRecipeService();
+            var userRecipe = userRecipeService.GetMyRecipesByUserId(id);
+            return Ok(userRecipe);
         }
-
 
         [Route("MyFavorites")]
         public IHttpActionResult GetMyFavorites([FromUri] string id)
         {
-            UserRecipeService postService = CreateUserRecipeService();
-                var post = postService.GetMyFavoritesByUserId(id);
-                return Ok(post);
+            UserRecipeService userRecipeService = CreateUserRecipeService();
+                var userRecipe = userRecipeService.GetMyFavoritesByUserId(id);
+                return Ok(userRecipe);
         }
 
-        [Route("MyNotes")]
+        [Route("RecipeNotes")]
         public IHttpActionResult GetMyNotes([FromUri] int id)
         {
             UserRecipeService userRecipeService = CreateUserRecipeService();
-            var post = userRecipeService.GetNotesByUserRecipeId(id);
-            return Ok(post);
+            var userRecipe = userRecipeService.GetNotesByUserRecipeId(id);
+            return Ok(userRecipe);
         }
 
-        //public IHttpActionResult GetFavorites([FromUri] string id, [FromBody] bool addToFavorites)
+        //public IHttpActionResult Put([FromUri] int id, [FromBody] NoteCreate noteForUserRecipe)
         //{
-        //    UserRecipeService postService = CreateUserRecipeService();
-        //    if (addToFavorites == true)
-        //    {
-        //        var post = postService.GetMyFavoritesByUserId(id);
-        //        return Ok(post);
-        //    }
-        //    return BadRequest("AddToFavorites is FALSE");
+        //    if (!ModelState.IsValid)
+        //        return BadRequest(ModelState);
+
+        //    var service = CreateUserRecipeService();
+
+        //    if (!service.UpdateUserRecipeAddNote(noteForUserRecipe, id))
+        //        return InternalServerError();
+        //    return Ok();
         //}
-
-        public IHttpActionResult Put([FromUri] int id, [FromBody] NoteCreate noteForUserRecipe)
-        {
-            //updatedUserRecipeWithAddedNote.UserRecipeId = id;
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var service = CreateUserRecipeService();
-
-            if (!service.UpdateUserRecipeAddNote(noteForUserRecipe, id))
-                return InternalServerError();
-            return Ok();
-        }
 
         //public IHttpActionResult Delete(int id)
         //{

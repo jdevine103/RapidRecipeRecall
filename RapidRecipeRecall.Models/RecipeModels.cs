@@ -43,7 +43,7 @@ namespace RapidRecipeRecall.Models
 
     public class RecipeEdit
     {
-        public string EnteredBy { get; set; } // Would it be this since users can only edit recipice they enter into the table??
+        public string EnteredBy { get; set; }
         public string RecipeName { get; set; }
         public string RecipeAuthor { get; set; }
         public string Ingredients { get; set; }
