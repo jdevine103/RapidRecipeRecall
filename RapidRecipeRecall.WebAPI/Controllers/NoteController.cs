@@ -39,12 +39,12 @@ namespace RapidRecipeRecall.WebAPI.Controllers
         //    return Ok(post);
         //}
 
-        public IHttpActionResult Get(int id)
-        {
-            NoteService postService = CreateNoteService();
-            var post = postService.GetNoteById(id);
-            return Ok(post);
-        }
+        //public IHttpActionResult Get(int id)
+        //{
+        //    NoteService noteService = CreateNoteService();
+        //    var note = noteService.GetNoteById(id);
+        //    return Ok(note);
+        //}
 
         public IHttpActionResult Put([FromUri] int id, [FromBody] NoteEdit updatedNote)
 

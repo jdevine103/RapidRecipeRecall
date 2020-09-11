@@ -2,6 +2,7 @@
 using RapidRecipeRecall.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,6 @@ namespace RapidRecipeRecall.Services
             _userId = userId;
         }
 
-
         public bool CreateUserRecipe(UserRecipeCreate model)
         {
             var entity =
@@ -26,8 +26,7 @@ namespace RapidRecipeRecall.Services
                     RecipeId = model.RecipeId,
                     UserId = _userId.ToString(),
                     AddToFavorites = model.AddToFavorites,
-                    Notes = model.Notes,
-
+                    //Notes = model.Notes,
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -52,29 +51,26 @@ namespace RapidRecipeRecall.Services
             }
         }
 
-
-        //public IEnumerable<UserRecipeListItem> GetMyRecipesByUserId()
-        //{
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        var query =
-        //            ctx
-        //                .UserRecipes
-        //                .Where(e => e.UserId == )
-        //                .Select(
-        //                    e =>
-        //                        new UserRecipeListItem
-        //                        {
-        //                            Id = e.Id,
-        //                            RecipeId = e.RecipeId,
-        //                            UserId = e.UserId,
-        //                            Notes = e.Notes,
-        //                        }
-        //                );
-
-        //        return query.ToArray();
-        //    }
-        //}
+        public IEnumerable<NoteListItem> GetNotesByUserRecipeId(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .UserRecipes
+                        //This is the difference between comment and note 
+                        .FirstOrDefault(e => e.Id == id && e.User.Id.ToString() == _userId.ToString());
+                var notes = entity.Notes.Select(
+                   e => new NoteListItem
+                   {
+                      NoteId = e.NoteId,
+                      Text = e.Text,
+                      UserRecipeId = e.UserRecipeId
+                   }
+                   );
+                return notes.ToArray();
+            }
+        }
 
         public IEnumerable<UserRecipeListItem> GetMyRecipesByUserId(string id)
         {
@@ -117,21 +113,19 @@ namespace RapidRecipeRecall.Services
                 return userRecipe.ToArray();
             }
         }
-        //public bool UpdateUserRecipe(UserRecipeEdit model, int id)
+        //public bool UpdateUserRecipeAddNote(NoteCreate model, int id)
         //{
         //    using (var ctx = new ApplicationDbContext())
         //    {
         //        var entity =
         //            ctx
         //                .UserRecipes
-        //                .Single(e => e.RecipeId == id);
+        //                .Single(e => e.Id == id && e.User.Id == _userId.ToString());
 
-        //        entity.Id = model.Id;
-        //        entity.RecipeId = model.RecipeId;
-        //        entity.UserId = model.UserId;
-        //        entity.Notes = model.Notes;
-
-        //        return ctx.SaveChanges() == 1;
+        //        var noteService = CreateNoteService();
+        //        noteService.CreateNote(model);
+   
+        //        return true; 
         //    }
         //}
 
@@ -150,5 +144,11 @@ namespace RapidRecipeRecall.Services
         //    }
         //}
 
+        private NoteService CreateNoteService()
+        {
+            //var userId = Guid.Parse(User.Identity.GetUserId());
+            NoteService noteService = new NoteService(_userId);
+            return noteService;
+        }
     }
 }

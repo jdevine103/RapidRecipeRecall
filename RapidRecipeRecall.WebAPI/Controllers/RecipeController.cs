@@ -19,18 +19,18 @@ namespace RapidRecipeRecall.WebAPI.Controllers
             return recipeService;
         }
 
-    public IHttpActionResult Get([FromUri]string name)
-    {
-        RecipeService recipeService = CreateRecipeService();
-        var recipe = recipeService.GetRecipeByName(name);
-        return Ok(recipe);
-    }
+        public IHttpActionResult Get([FromUri] string name)
+        {
+            RecipeService recipeService = CreateRecipeService();
+            var recipe = recipeService.GetRecipeByName(name);
+            return Ok(recipe);
+        }
 
         public IHttpActionResult Get()
         {
-            RecipeService postService = CreateRecipeService();
-            var post = postService.GetAllRecipes();
-            return Ok(post);
+            RecipeService recipeService = CreateRecipeService();
+            var recipe = recipeService.GetAllRecipes();
+            return Ok(recipe);
         }
 
         public IHttpActionResult Post(RecipeCreate recipe)
@@ -48,20 +48,21 @@ namespace RapidRecipeRecall.WebAPI.Controllers
 
         public IHttpActionResult Get(int id)
         {
-            RecipeService postService = CreateRecipeService();
-            var post = postService.GetRecipeById(id);
-            return Ok(post);
+            RecipeService recipeService = CreateRecipeService();
+            var recipe = recipeService.GetRecipeById(id);
+            return Ok(recipe);
         }
 
         public IHttpActionResult Put([FromUri] int id, [FromBody] RecipeEdit updatedRecipe)
-
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
+
             var service = CreateRecipeService();
 
             if (!service.UpdateRecipe(updatedRecipe, id))
                 return InternalServerError();
+
             return Ok();
         }
 
@@ -74,6 +75,5 @@ namespace RapidRecipeRecall.WebAPI.Controllers
 
             return Ok();
         }
-
     }
 }

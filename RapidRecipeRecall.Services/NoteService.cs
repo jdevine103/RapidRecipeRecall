@@ -19,60 +19,19 @@ namespace RapidRecipeRecall.Services
 
         public bool CreateNote(NoteCreate model)
         {
-            var entity =
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var note =
                 new Note()
                 {
                     NoteId = model.NoteId,
                     Text = model.Text,
                     UserRecipeId = model.UserRecipeId,
-                   
                 };
 
-            using (var ctx = new ApplicationDbContext())
-            {
-                ctx.Notes.Add(entity);
+                ctx.Notes.Add(note);
                 return ctx.SaveChanges() == 1;
-            }
-        }
-
-        //public IEnumerable<NoteListItem> GetAllNotes()
-        //{
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        var query =
-        //            ctx
-        //                .Notes
-        //                .Where(e => e.)
-        //                .Select(
-        //                    e =>
-        //                        new NoteListItem
-        //                        {
-        //                            NoteId = e.NoteId,
-        //                            Text = e.Text,
-        //                            UserRecipeId = e.UserRecipeId,
-        //                        }
-        //                );
-
-        //        return query.ToArray();
-        //    }
-        //}
-
-
-        public NoteDetail GetNoteById(int id)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Notes
-                        .Single(e => e.UserRecipeId == id);
-                return
-                    new NoteDetail
-                    {
-                        NoteId = entity.NoteId,
-                        Text = entity.Text,
-                        UserRecipeId = entity.UserRecipeId,
-                    };
             }
         }
 
@@ -85,7 +44,7 @@ namespace RapidRecipeRecall.Services
                         .Notes
                         .Single(e => e.NoteId == id);
 
-                entity.Text = model.Text;                
+                entity.Text = model.Text;
 
                 return ctx.SaveChanges() == 1;
             }
@@ -105,6 +64,5 @@ namespace RapidRecipeRecall.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-
     }
 }
