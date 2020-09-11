@@ -32,11 +32,6 @@ namespace RapidRecipeRecall.Models
     {
         public NoteCreate Note { get; set; }
     }    
-    
-    public class UserRecipeAddNote
-    {
-        public string Text { get; set; }
-    }
 
     public class UserRecipeListItem
     {

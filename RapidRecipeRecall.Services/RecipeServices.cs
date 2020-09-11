@@ -31,10 +31,7 @@ namespace RapidRecipeRecall.Services
             var entity =
                 new Recipe()
                 {
-
-                   
                     //EnteredBy = model.EnteredBy,
-
                     RecipeName = model.RecipeName,
                     RecipeAuthor = model.RecipeAuthor,
                     IsPublic = model.IsPublic,

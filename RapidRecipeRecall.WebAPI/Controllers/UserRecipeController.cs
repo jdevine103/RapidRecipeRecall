@@ -58,6 +58,14 @@ namespace RapidRecipeRecall.WebAPI.Controllers
                 return Ok(post);
         }
 
+        [Route("MyNotes")]
+        public IHttpActionResult GetMyNotes([FromUri] int id)
+        {
+            UserRecipeService userRecipeService = CreateUserRecipeService();
+            var post = userRecipeService.GetNotesByUserRecipeId(id);
+            return Ok(post);
+        }
+
         //public IHttpActionResult GetFavorites([FromUri] string id, [FromBody] bool addToFavorites)
         //{
         //    UserRecipeService postService = CreateUserRecipeService();
@@ -69,14 +77,15 @@ namespace RapidRecipeRecall.WebAPI.Controllers
         //    return BadRequest("AddToFavorites is FALSE");
         //}
 
-        public IHttpActionResult Put([FromUri] int id, [FromBody] UserRecipeAddNote updatedUserRecipeWithAddedNote)
+        public IHttpActionResult Put([FromUri] int id, [FromBody] NoteCreate noteForUserRecipe)
         {
+            //updatedUserRecipeWithAddedNote.UserRecipeId = id;
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var service = CreateUserRecipeService();
 
-            if (!service.UpdateUserRecipeAddNote(updatedUserRecipeWithAddedNote, id))
+            if (!service.UpdateUserRecipeAddNote(noteForUserRecipe, id))
                 return InternalServerError();
             return Ok();
         }

@@ -19,18 +19,18 @@ namespace RapidRecipeRecall.WebAPI.Controllers
             return noteService;
         }
 
-        //public IHttpActionResult Post(NoteCreate note)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return BadRequest(ModelState);
+        public IHttpActionResult Post(NoteCreate note)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-        //    var service = CreateNoteService();
+            var service = CreateNoteService();
 
-        //    if (!service.CreateNote(note))
-        //        return InternalServerError();
+            if (!service.CreateNote(note))
+                return InternalServerError();
 
-        //    return Ok();
-        //}
+            return Ok();
+        }
 
         //public IHttpActionResult Get()
         //{
@@ -39,34 +39,34 @@ namespace RapidRecipeRecall.WebAPI.Controllers
         //    return Ok(post);
         //}
 
-        public IHttpActionResult Get(int id)
-        {
-            NoteService postService = CreateNoteService();
-            var post = postService.GetNoteById(id);
-            return Ok(post);
-        }
+        //public IHttpActionResult Get(int id)
+        //{
+        //    NoteService noteService = CreateNoteService();
+        //    var note = noteService.GetNoteById(id);
+        //    return Ok(note);
+        //}
 
-        public IHttpActionResult Put([FromUri] int id, [FromBody] NoteEdit updatedNote)
+        //public IHttpActionResult Put([FromUri] int id, [FromBody] NoteEdit updatedNote)
 
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-            var service = CreateNoteService();
+        //{
+        //    if (!ModelState.IsValid)
+        //        return BadRequest(ModelState);
+        //    var service = CreateNoteService();
 
-            if (!service.UpdateNote(updatedNote, id))
-                return InternalServerError();
-            return Ok();
-        }
+        //    if (!service.UpdateNote(updatedNote, id))
+        //        return InternalServerError();
+        //    return Ok();
+        //}
 
-        public IHttpActionResult Delete(int id)
-        {
-            var service = CreateNoteService();
+        //public IHttpActionResult Delete(int id)
+        //{
+        //    var service = CreateNoteService();
 
-            if (!service.DeleteNote(id))
-                return InternalServerError();
+        //    if (!service.DeleteNote(id))
+        //        return InternalServerError();
 
-            return Ok();
-        }
+        //    return Ok();
+        //}
 
     }
 }

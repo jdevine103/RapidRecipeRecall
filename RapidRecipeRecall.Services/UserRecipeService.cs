@@ -28,7 +28,6 @@ namespace RapidRecipeRecall.Services
                     UserId = _userId.ToString(),
                     AddToFavorites = model.AddToFavorites,
                     //Notes = model.Notes,
-
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -53,29 +52,25 @@ namespace RapidRecipeRecall.Services
             }
         }
 
-
-        //public IEnumerable<UserRecipeListItem> GetMyRecipesByUserId()
-        //{
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        var query =
-        //            ctx
-        //                .UserRecipes
-        //                .Where(e => e.UserId == )
-        //                .Select(
-        //                    e =>
-        //                        new UserRecipeListItem
-        //                        {
-        //                            Id = e.Id,
-        //                            RecipeId = e.RecipeId,
-        //                            UserId = e.UserId,
-        //                            Notes = e.Notes,
-        //                        }
-        //                );
-
-        //        return query.ToArray();
-        //    }
-        //}
+        public IEnumerable<NoteListItem> GetNotesByUserRecipeId(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .UserRecipes
+                        .FirstOrDefault(e => e.Id == id);
+                var notes = entity.Notes.Select(
+                   e => new NoteListItem
+                   {
+                      NoteId = e.NoteId,
+                      Text = e.Text,
+                      UserRecipeId = e.UserRecipeId
+                   }
+                   );
+                return notes.ToArray();
+            }
+        }
 
         public IEnumerable<UserRecipeListItem> GetMyRecipesByUserId(string id)
         {
@@ -118,7 +113,7 @@ namespace RapidRecipeRecall.Services
                 return userRecipe.ToArray();
             }
         }
-        public bool UpdateUserRecipeAddNote(UserRecipeAddNote model, int id)
+        public bool UpdateUserRecipeAddNote(NoteCreate model, int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -129,20 +124,8 @@ namespace RapidRecipeRecall.Services
 
                 var noteService = CreateNoteService();
                 noteService.CreateNote(model);
-
-                //Note note =
-                //    new Note()
-                //    {
-                //        Text = model.Text
-                //    };
-
-     
-                return ctx.SaveChanges() == 1;
-
-                //entity.Notes.Add(note);
-
-                //return worked;
-
+   
+                return true; 
             }
         }
 

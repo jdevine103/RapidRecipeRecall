@@ -17,14 +17,15 @@ namespace RapidRecipeRecall.Services
             _userId = userId;
         }
 
-        public bool CreateNote(UserRecipeAddNote model)
+        public bool CreateNote(NoteCreate model)
         {
             var entity =
                 new Note()
                 {
-                    //NoteId = model.NoteId,
+                    NoteId = model.NoteId,
                     Text = model.Text,
-                    //UserRecipeId = model.UserRecipeId,
+                    UserRecipeId = model.UserRecipeId,
+
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -57,38 +58,38 @@ namespace RapidRecipeRecall.Services
         //}
 
 
-        public NoteDetail GetNoteById(int id)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Notes
-                        .Single(e => e.UserRecipeId == id);
-                return
-                    new NoteDetail
-                    {
-                        NoteId = entity.NoteId,
-                        Text = entity.Text,
-                        UserRecipeId = entity.UserRecipeId,
-                    };
-            }
-        }
+        //public NoteDetail GetNoteById(int id)
+        //{
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var entity =
+        //            ctx
+        //                .Notes
+        //                .Single(e => e.UserRecipeId == id);
+        //        return
+        //            new NoteDetail
+        //            {
+        //                NoteId = entity.NoteId,
+        //                Text = entity.Text,
+        //                UserRecipeId = entity.UserRecipeId,
+        //            };
+        //    }
+        //}
 
-        public bool UpdateNote(NoteEdit model, int id)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Notes
-                        .Single(e => e.NoteId == id);
+        //public bool UpdateNote(NoteEdit model, int id)
+        //{
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var entity =
+        //            ctx
+        //                .Notes
+        //                .Single(e => e.NoteId == id);
 
-                entity.Text = model.Text;                
+        //        entity.Text = model.Text;                
 
-                return ctx.SaveChanges() == 1;
-            }
-        }
+        //        return ctx.SaveChanges() == 1;
+        //    }
+        //}
 
         public bool DeleteNote(int noteId)
         {
