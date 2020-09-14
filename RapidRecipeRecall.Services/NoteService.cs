@@ -42,7 +42,7 @@ namespace RapidRecipeRecall.Services
                 var entity =
                     ctx
                         .Notes
-                        .Single(e => e.NoteId == id);
+                        .Single(e => e.NoteId == id && e.UserRecipe.UserId == _userId.ToString());
 
                 entity.Text = model.Text;
 
