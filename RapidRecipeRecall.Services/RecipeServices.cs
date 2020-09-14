@@ -105,7 +105,7 @@ namespace RapidRecipeRecall.Services
                 var entity =
                     ctx
                         .Recipes
-                        .Single(e => e.RecipeId == id);
+                        .Single(e => e.RecipeId == id && e.IsPublic == true);
                 return
                     new RecipeDetail
                     {
