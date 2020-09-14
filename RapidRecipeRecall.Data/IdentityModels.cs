@@ -26,7 +26,7 @@ namespace RapidRecipeRecall.Data
                     var query =
                        ctx
                             .UserRecipes
-                            .Where(e => e.Recipe.UserId == Id)
+                            .Where(e => e.Recipe.UserId == Id && e.User.Id == Id)
                             .ToList();
                     return query;
                 }
@@ -44,7 +44,7 @@ namespace RapidRecipeRecall.Data
                     var query =
                        ctx
                             .UserRecipes
-                            .Where(e => e.UserId == Id && e.AddToFavorites)
+                            .Where(e => e.UserId == Id && e.AddToFavorites && e.Recipe.UserId != Id)
                             .ToList();
                     return query;
                 }

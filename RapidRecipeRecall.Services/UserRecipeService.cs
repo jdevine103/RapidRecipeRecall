@@ -78,8 +78,9 @@ namespace RapidRecipeRecall.Services
             {
                 var entity =
                     ctx
+                        
                         .Users
-                        .FirstOrDefault(e => e.Id.ToString() == id);
+                        .FirstOrDefault(e => e.Id.ToString() == id && e.Id.ToString() == _userId.ToString());
                 var userRecipe = entity.MyRecipes.Select(
                    e => new UserRecipeListItem
                    {
@@ -100,7 +101,7 @@ namespace RapidRecipeRecall.Services
                 var entity =
                     ctx
                         .Users
-                        .FirstOrDefault(e => e.Id.ToString() == id);
+                        .FirstOrDefault(e => e.Id.ToString() == id && e.Id.ToString() == _userId.ToString());
                 var userRecipe = entity.MyFavorites.Select(
                    e => new UserRecipeListItem
                    {
