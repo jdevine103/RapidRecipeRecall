@@ -27,6 +27,7 @@ namespace RapidRecipeRecall.Services
                     NoteId = model.NoteId,
                     Text = model.Text,
                     UserRecipeId = model.UserRecipeId,
+                    UserId = _userId.ToString(),
                 };
                 ctx.Notes.Add(note);
                 return ctx.SaveChanges() == 1;
