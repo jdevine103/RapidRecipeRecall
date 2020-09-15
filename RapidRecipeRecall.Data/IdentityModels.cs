@@ -45,7 +45,7 @@ namespace RapidRecipeRecall.Data
                             .UserRecipes
                             .Where(e => e.UserId == Id.ToString() && e.AddToFavorites) // && e.Recipe.UserId != Id
                             .ToList();
-                    return query;
+                    return EliminateDuplicates(query);
                 }
             }
         } 
