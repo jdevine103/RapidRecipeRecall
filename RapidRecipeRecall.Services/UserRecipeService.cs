@@ -79,12 +79,8 @@ namespace RapidRecipeRecall.Services
             {
                 var entity =
                     ctx
-                        
                         .Users
-
                         //                  From .Users.Id - passed int - .Users.Id       From logged in user
-
-
                         .FirstOrDefault(e => e.Id.ToString() == id && e.Id.ToString() == _userId.ToString());
                 var userRecipe = entity.MyRecipes.Select(
                    e => new UserRecipeListItem

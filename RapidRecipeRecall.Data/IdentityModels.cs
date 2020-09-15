@@ -29,25 +29,6 @@ namespace RapidRecipeRecall.Data
                             .Where(e => e.Recipe.UserId == Id && e.User.Id == Id)
                             .ToList();
 
-
-                    List<int> temp = new List<int>();
-                    List<UserRecipe> temp2 = new List<UserRecipe>();
-
-                    //return query;
-                    for (int i = 0; i < query.Count; i++)
-                    {
-                        int recipeId = query[i].RecipeId;
-
-                        if (!temp.Contains(recipeId))
-                        {
-                            temp2.Add(query[i]);
-                        }
-
-                        temp.Add(recipeId);
-                    }
-
-                    //return temp2;
-
                     return EliminateDuplicates(query);
 
                 }
