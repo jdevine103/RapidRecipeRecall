@@ -32,7 +32,7 @@ namespace RapidRecipeRecall.Data
                     var query =
                        ctx
                             .Notes
-                            .Where(e => e.UserRecipeId == Id)
+                            .Where(e => e.UserRecipeId == Id && e.User.Id == UserId)
                             .ToList();
                     return query;
                 }

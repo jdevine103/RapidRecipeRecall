@@ -29,6 +29,7 @@ namespace RapidRecipeRecall.Data
                             .Where(e => e.Recipe.UserId == Id && e.User.Id == Id)
                             .ToList();
 
+
                     List<int> temp = new List<int>();
                     List<UserRecipe> temp2 = new List<UserRecipe>();
 
@@ -45,7 +46,10 @@ namespace RapidRecipeRecall.Data
                         temp.Add(recipeId);
                     }
 
-                    return temp2;
+                    //return temp2;
+
+                    return EliminateDuplicates(query);
+
                 }
             }
         }
@@ -59,20 +63,35 @@ namespace RapidRecipeRecall.Data
                     var query =
                        ctx
                             .UserRecipes
-                            .Where(e => e.UserId == Id && e.AddToFavorites && e.Recipe.UserId != Id)
+                            .Where(e => e.UserId == Id.ToString() && e.AddToFavorites) // && e.Recipe.UserId != Id
                             .ToList();
-                    return query;
+                    return EliminateDuplicates(query);
                 }
             }
-        }
-
-        //use AddToMyFavorites boolean here 
+        } 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, authenticationType);
             // Add custom user claims here
             return userIdentity;
+        }
+        public List<UserRecipe> EliminateDuplicates (List<UserRecipe> query)
+        {
+            List<int> temp = new List<int>();
+            List<UserRecipe> temp2 = new List<UserRecipe>();
+
+            for (int i = 0; i < query.Count; i++)
+            {
+                int recipeId = query[i].RecipeId;
+
+                if (!temp.Contains(recipeId))
+                {
+                    temp2.Add(query[i]);
+                }
+                temp.Add(recipeId);
+            }
+            return temp2;
         }
     }
 
