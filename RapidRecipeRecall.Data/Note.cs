@@ -19,5 +19,6 @@ namespace RapidRecipeRecall.Data
         [ForeignKey(nameof(UserRecipe))]
         public int UserRecipeId { get; set; }
         public virtual UserRecipe UserRecipe { get; set; }
+
     }
 }

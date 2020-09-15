@@ -60,6 +60,7 @@ namespace RapidRecipeRecall.Services
                         .UserRecipes
                         //This is the difference between comment and note 
                         .FirstOrDefault(e => e.Id == id && e.User.Id.ToString() == _userId.ToString());
+
                 var notes = entity.Notes.Select(
                    e => new NoteListItem
                    {
@@ -68,7 +69,7 @@ namespace RapidRecipeRecall.Services
                       UserRecipeId = e.UserRecipeId
                    }
                    );
-                return notes.ToArray();
+                return notes.ToList();
             }
         }
 
@@ -86,7 +87,7 @@ namespace RapidRecipeRecall.Services
                    {
                        Id = e.Id,
                        RecipeId = e.RecipeId,
-                       Notes = e.Notes,
+                       Notes = GetNotesByUserRecipeId(e.Id),
                        UserId = e.UserId,
                    }
                    );
@@ -107,7 +108,7 @@ namespace RapidRecipeRecall.Services
                    {
                        Id = e.Id,
                        RecipeId = e.RecipeId,
-                       Notes = e.Notes,
+                       Notes = GetNotesByUserRecipeId(e.Id),
                        UserId = e.UserId,
                    }
                    );
