@@ -40,6 +40,6 @@ namespace RapidRecipeRecall.Models
 
         public string UserId { get; set; }
 
-        public List<Note> Notes { get; set; }
+        public IEnumerable<NoteListItem> Notes { get; set; }
     }
 }

@@ -19,7 +19,6 @@ namespace RapidRecipeRecall.Services
 
         public bool CreateNote(NoteCreate model)
         {
-
             using (var ctx = new ApplicationDbContext())
             {
                 var note =
@@ -28,8 +27,8 @@ namespace RapidRecipeRecall.Services
                     NoteId = model.NoteId,
                     Text = model.Text,
                     UserRecipeId = model.UserRecipeId,
+                    UserId = _userId.ToString(),
                 };
-
                 ctx.Notes.Add(note);
                 return ctx.SaveChanges() == 1;
             }
@@ -57,7 +56,7 @@ namespace RapidRecipeRecall.Services
                 var entity =
                     ctx
                         .Notes
-                        .Single(e => e.NoteId == noteId);
+                        .Single(e => e.NoteId == noteId && e.UserRecipe.UserId == _userId.ToString());
 
                 ctx.Notes.Remove(entity);
 
