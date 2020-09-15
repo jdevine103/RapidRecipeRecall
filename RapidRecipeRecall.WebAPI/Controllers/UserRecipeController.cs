@@ -77,15 +77,15 @@ namespace RapidRecipeRecall.WebAPI.Controllers
         //    return Ok();
         //}
 
-        //public IHttpActionResult Delete(int id)
-        //{
-        //    var service = CreateUserRecipeService();
+        public IHttpActionResult Delete(int id)
+        {
+            var service = CreateUserRecipeService();
 
-        //    if (!service.DeleteUserRecipe(id))
-        //        return InternalServerError();
+            if (!service.DeleteUserRecipe(id))
+                return InternalServerError();
 
-        //    return Ok();
-        //}
+            return Ok();
+        }
 
     }
 }

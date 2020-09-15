@@ -77,14 +77,10 @@ namespace RapidRecipeRecall.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
+                var entity =   
                     ctx
-                        
                         .Users
-
                         //                  From .Users.Id - passed int - .Users.Id       From logged in user
-
-
                         .FirstOrDefault(e => e.Id.ToString() == id && e.Id.ToString() == _userId.ToString());
                 var userRecipe = entity.MyRecipes.Select(
                    e => new UserRecipeListItem
@@ -130,25 +126,28 @@ namespace RapidRecipeRecall.Services
 
         //        var noteService = CreateNoteService();
         //        noteService.CreateNote(model);
-   
+
         //        return true; 
         //    }
         //}
 
-        //public bool DeleteUserRecipe(int recipeId)
-        //{
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        var entity =
-        //            ctx
-        //                .UserRecipes
-        //                .Single(e => e.RecipeId == recipeId);
 
-        //        ctx.UserRecipes.Remove(entity);
+        //DELETE By UserRecipe ID ID for multiple entries... 
 
-        //        return ctx.SaveChanges() == 1;
-        //    }
-        //}
+        public bool DeleteUserRecipe(int recipeId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .UserRecipes
+                        .Single(e => e.Id == recipeId);
+
+                ctx.UserRecipes.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
 
         private NoteService CreateNoteService()
         {

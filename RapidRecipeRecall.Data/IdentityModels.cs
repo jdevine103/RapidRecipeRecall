@@ -49,7 +49,7 @@ namespace RapidRecipeRecall.Data
                     return EliminateDuplicates(query);
                 }
             }
-        } 
+        }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -57,7 +57,7 @@ namespace RapidRecipeRecall.Data
             // Add custom user claims here
             return userIdentity;
         }
-        public List<UserRecipe> EliminateDuplicates (List<UserRecipe> query)
+        public List<UserRecipe> EliminateDuplicates(List<UserRecipe> query)
         {
             List<int> temp = new List<int>();
             List<UserRecipe> temp2 = new List<UserRecipe>();
