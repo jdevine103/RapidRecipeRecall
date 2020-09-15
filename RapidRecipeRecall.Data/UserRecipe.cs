@@ -28,11 +28,11 @@ namespace RapidRecipeRecall.Data
             get
             {
                 using (var ctx = new ApplicationDbContext())
-                {
+                {   
                     var query =
                        ctx
                             .Notes
-                            .Where(e => e.UserRecipeId == Id)
+                            .Where(e => e.UserRecipeId == Id && e.UserRecipe.User.Id == UserId)
                             .ToList();
                     return query;
                 }

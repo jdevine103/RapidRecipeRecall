@@ -129,25 +129,28 @@ namespace RapidRecipeRecall.Services
 
         //        var noteService = CreateNoteService();
         //        noteService.CreateNote(model);
-   
+
         //        return true; 
         //    }
         //}
 
-        //public bool DeleteUserRecipe(int recipeId)
-        //{
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        var entity =
-        //            ctx
-        //                .UserRecipes
-        //                .Single(e => e.RecipeId == recipeId);
 
-        //        ctx.UserRecipes.Remove(entity);
+        //DELETE By UserRecipe ID ID for multiple entries... 
 
-        //        return ctx.SaveChanges() == 1;
-        //    }
-        //}
+        public bool DeleteUserRecipe(int recipeId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .UserRecipes
+                        .Single(e => e.Id == recipeId);
+
+                ctx.UserRecipes.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
 
         private NoteService CreateNoteService()
         {
