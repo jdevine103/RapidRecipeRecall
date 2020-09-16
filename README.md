@@ -2,8 +2,16 @@
 
 By Simply Team 2 (Ben, John & Brittany)
 
+### What is RapidRecipeRecall?
+
 Our application is for an avid home cook to have an easy way to access and store their recipes in one place. No more recipe books or magazine clippings. Users are able to add recipes and create a favorite recipes list. 
 They also have the ability to add personal notes to their recipes — if they substituted an ingredient or made a change to the recipe. And all users will also be able to comment (leave reviews, feedback, etc.) on all public recipes.
+
+### User Story
+
+Betty Wiffalsloper is a 45 year old stay at home mom. She is married with three kids and has a dog name Burny. With a busy lifestyle, it is important for Betty to have at least one meal a day together as a family. She loves to cook and searches for new recipes online, and has a stack of her favorite recipe books and magazine clippings. 
+
+Unfortunately, Betty has so many recipe available that she struggles picking one out and spends more time searching for the right recipe than actually cooking. Some nights the family has to settle for a PB&J. She needs an easier way to store and access all of her recipes. The RapidRecipeRecall app is her solution!
 
 ## How to run this app locally:
   - You’ll need Visual Studio Community & SQL Server Object Explorer
