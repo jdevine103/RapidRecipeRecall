@@ -11,8 +11,7 @@ They also have the ability to add personal notes to their recipes — if they su
   - Use Postman or Swagger (to test endpoints)
 
 ### RapidRecipeRecall Wireframe
-
-<img width="738" alt="Screen Shot 2020-09-16 at 4 49 55 PM" src=“https://user-images.githubusercontent.com/12259461/93393839-32f98f00-f841-11ea-9de9-625b7a3124fc.png">
+<img width="738" alt="Screen Shot 2020-09-16 at 4 49 55 PM" src="https://user-images.githubusercontent.com/12259461/93394152-c03ce380-f841-11ea-8cc3-b5ef04ccb63a.png">
 
 ![Screen Shot 2020-09-16 at 3 56 18 PM](https://user-images.githubusercontent.com/12259461/93393886-486eb900-f841-11ea-91d8-43529c01c460.png)
   
