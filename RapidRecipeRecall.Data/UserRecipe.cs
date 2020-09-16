@@ -23,7 +23,7 @@ namespace RapidRecipeRecall.Data
         
         public bool AddToFavorites { get; set; }
 
-        public List<Note> Notes
+        public virtual List<Note> Notes 
         {
             get
             {
@@ -36,7 +36,7 @@ namespace RapidRecipeRecall.Data
                             .ToList();
                     return query;
                 }
-            }
+}
         }
     }
 }

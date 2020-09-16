@@ -51,7 +51,7 @@ namespace RapidRecipeRecall.Services
             }
         }
 
-        public IEnumerable<NoteListItem> GetNotesByUserRecipeId(int id)
+        public List<NoteListItem> GetNotesByUserRecipeId(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -59,17 +59,28 @@ namespace RapidRecipeRecall.Services
                     ctx
                         .UserRecipes
                         //This is the difference between comment and note 
-                        .FirstOrDefault(e => e.Id == id && e.User.Id.ToString() == _userId.ToString());
+                        .FirstOrDefault(e => e.Id == id); //&& e.User.Id.ToString() == _userId.ToString()
 
-                var notes = entity.Notes.Select(
-                   e => new NoteListItem
-                   {
-                      NoteId = e.NoteId,
-                      Text = e.Text,
-                      UserRecipeId = e.UserRecipeId
-                   }
-                   );
-                return notes.ToList();
+                IEnumerable<Note> notes = entity.Notes;
+
+                return CreateListOfNotes(notes);
+
+            }
+        }
+
+        private void CreateListOfNotes(IEnumerable<Note> notes)
+        {
+            List<NoteListItem> NewList = new List<NoteListItem>();
+
+            foreach (Note note in notes)
+            {
+              if( note.Where(e => e.UserRecipeId == Id && e.User.Id == UserId) )
+                {
+                    noteListItem = note.ConvertToNoteListItem();
+                    NewList.Add(noteListItem);
+                }
+
+                return NewList;
             }
         }
 
@@ -79,12 +90,8 @@ namespace RapidRecipeRecall.Services
             {
                 var entity =
                     ctx
-                        
                         .Users
-
                         //                  From .Users.Id - passed int - .Users.Id       From logged in user
-
-
                         .FirstOrDefault(e => e.Id.ToString() == id && e.Id.ToString() == _userId.ToString());
                 var userRecipe = entity.MyRecipes.Select(
                    e => new UserRecipeListItem

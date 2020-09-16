@@ -13,7 +13,7 @@ namespace RapidRecipeRecall.Models
         public string EnteredBy { get; set; }
 
         [Required]
-        [MinLength(2, ErrorMessage = "Please enter at least 2 charactoers.")]
+        [MinLength(2, ErrorMessage = "Please enter at least 2 characters.")]
         public string RecipeName { get; set; }
 
         public string RecipeAuthor { get; set; }

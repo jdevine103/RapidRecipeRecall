@@ -20,7 +20,6 @@ namespace RapidRecipeRecall.Data
         {
             get
             {
-
                 using (var ctx = new ApplicationDbContext())
                 {
                     var query =
