@@ -43,6 +43,8 @@ namespace RapidRecipeRecall.Data
         [Required]
         public Category Category { get; set; }
 
+        public virtual List<Comment> Comments { get; set; }
+
     }
 
     public enum Category
