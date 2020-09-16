@@ -54,11 +54,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommentService.cs" />
+    <Compile Include="NoteService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecipeServices.cs" />
+    <Compile Include="UserRecipeService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RapidRecipeRecall.Data\RapidRecipeRecall.Data.csproj">
+      <Project>{E80ADB5B-BE04-4F91-8E62-896A1066DB81}</Project>
+      <Name>RapidRecipeRecall.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RapidRecipeRecall.Models\RapidRecipeRecall.Models.csproj">
+      <Project>{C9B4550E-70D9-4B06-BA39-7D2699CE3081}</Project>
+      <Name>RapidRecipeRecall.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

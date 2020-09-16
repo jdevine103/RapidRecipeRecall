@@ -70,6 +70,7 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
@@ -84,7 +85,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comment.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\202009151330570_InitialCreate.cs" />
+    <Compile Include="Migrations\202009151330570_InitialCreate.Designer.cs">
+      <DependentUpon>202009151330570_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009151742282_FKinNote.cs" />
+    <Compile Include="Migrations\202009151742282_FKinNote.Designer.cs">
+      <DependentUpon>202009151742282_FKinNote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009161506496_PleaseWork.cs" />
+    <Compile Include="Migrations\202009161506496_PleaseWork.Designer.cs">
+      <DependentUpon>202009161506496_PleaseWork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Note.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recipe.cs" />
@@ -93,6 +108,17 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202009151330570_InitialCreate.resx">
+      <DependentUpon>202009151330570_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009151742282_FKinNote.resx">
+      <DependentUpon>202009151742282_FKinNote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009161506496_PleaseWork.resx">
+      <DependentUpon>202009161506496_PleaseWork.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
