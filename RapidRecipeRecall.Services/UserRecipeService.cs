@@ -55,7 +55,7 @@ namespace RapidRecipeRecall.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
+                  var entity =
                     ctx
                         .UserRecipes
                         //This is the difference between comment and note 

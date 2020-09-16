@@ -20,7 +20,7 @@ namespace RapidRecipeRecall.Data
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
-        
+
         public bool AddToFavorites { get; set; }
 
         public List<Note> Notes
@@ -28,7 +28,7 @@ namespace RapidRecipeRecall.Data
             get
             {
                 using (var ctx = new ApplicationDbContext())
-                {   
+                {
                     var query =
                        ctx
                             .Notes
@@ -38,5 +38,7 @@ namespace RapidRecipeRecall.Data
                 }
             }
         }
+
+       
     }
 }

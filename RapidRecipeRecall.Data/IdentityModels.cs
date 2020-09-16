@@ -60,7 +60,7 @@ namespace RapidRecipeRecall.Data
         public List<UserRecipe> EliminateDuplicates(List<UserRecipe> query)
         {
             List<int> temp = new List<int>();
-            List<UserRecipe> temp2 = new List<UserRecipe>();
+            List<UserRecipe> tempTwo = new List<UserRecipe>();
 
             for (int i = 0; i < query.Count; i++)
             {
@@ -68,11 +68,11 @@ namespace RapidRecipeRecall.Data
 
                 if (!temp.Contains(recipeId))
                 {
-                    temp2.Add(query[i]);
+                    tempTwo.Add(query[i]);
                 }
                 temp.Add(recipeId);
             }
-            return temp2;
+            return tempTwo;
         }
     }
 
@@ -91,6 +91,8 @@ namespace RapidRecipeRecall.Data
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<UserRecipe> UserRecipes { get; set; }
         public DbSet<Note> Notes { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

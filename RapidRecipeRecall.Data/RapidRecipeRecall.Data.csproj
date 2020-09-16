@@ -85,6 +85,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comment.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Migrations\202009151330570_InitialCreate.cs" />
     <Compile Include="Migrations\202009151330570_InitialCreate.Designer.cs">
@@ -93,6 +94,10 @@
     <Compile Include="Migrations\202009151742282_FKinNote.cs" />
     <Compile Include="Migrations\202009151742282_FKinNote.Designer.cs">
       <DependentUpon>202009151742282_FKinNote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009161506496_PleaseWork.cs" />
+    <Compile Include="Migrations\202009161506496_PleaseWork.Designer.cs">
+      <DependentUpon>202009161506496_PleaseWork.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Note.cs" />
@@ -110,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009151742282_FKinNote.resx">
       <DependentUpon>202009151742282_FKinNote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009161506496_PleaseWork.resx">
+      <DependentUpon>202009161506496_PleaseWork.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

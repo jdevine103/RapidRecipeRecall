@@ -53,6 +53,41 @@ namespace RapidRecipeRecall.Services
             return saved;
         }
 
+
+        public IEnumerable<CommentListItem> GetCommentsByRecipeId(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                  ctx
+                      .Recipes
+                      .FirstOrDefault(e => e.RecipeId == id);
+
+                IEnumerable<Comment> comments = entity.Comments;
+
+                return CreateListOfComments(comments);
+            }
+        }
+
+        private IEnumerable<CommentListItem> CreateListOfComments(IEnumerable<Comment> comments)
+        {
+
+            List<CommentListItem> commentListItems = new List<CommentListItem>();
+
+            foreach (Comment comment in comments)
+            {
+                CommentListItem i = new CommentListItem 
+                {
+                    CommentId = comment.CommentId,
+                    Text = comment.Text,
+                    RecipeId = comment.RecipeId,
+
+                };
+                commentListItems.Add(i);
+            }
+            return commentListItems;
+        }
+
         public IEnumerable<RecipeListItem> GetAllRecipes()
         {
             using (var ctx = new ApplicationDbContext())
